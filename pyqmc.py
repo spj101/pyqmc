@@ -43,9 +43,9 @@ def qmc_integrate(func, n, s, d):
         ( result, error)
     """
     shift_results = []
-    for _ in range(shifts):
+    for _ in range(s):
         s = np.random.uniform(size=d) # generate shift
-        x_lattice = qmc_r1sl_sample(lattice_size, d, s) # generate lattice
+        x_lattice = qmc_r1sl_sample(n, d, s) # generate lattice
         shift_results.append(np.mean([func(x) for x in x_lattice ])) # each shift is avg of lattice
     return np.mean(shift_results), np.std(shift_results) # result is avg, std of shifts
 
